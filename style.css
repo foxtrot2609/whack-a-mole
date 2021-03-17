@@ -1,0 +1,58 @@
+html {
+    box-sizing: border-box;
+    font-size: 10px;
+    background: url("img/grass.jpg") repeat;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    font-family: "Amatic SC", cursive;
+}
+
+h1 {
+    /* text-align: center; */
+    font-size: 10rem;
+    line-height: 1;
+}
+
+.count {
+    margin-left: 5rem;
+}
+
+.game {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.hole {
+    flex-basis: 32.2%;
+    margin: 0 calc(3.33% / 6);
+    background-image: url("img/hole.png");
+    background-size: cover;
+    width: 19vh;
+}
+
+.game::after, .hole::after {
+    content: "";
+    float: right;  
+}
+
+.game::after {
+    padding-top: 33.33%;
+}
+
+.hole::after {
+    padding-top: 100%;
+}

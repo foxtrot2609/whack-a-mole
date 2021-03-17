@@ -13,8 +13,10 @@ const randomHole = (holes) => {
   const index = Math.floor(Math.random() * holes.length);
   const hole = holes[index];
   if (hole === lastHole) {
+    console.log("the same");
     return randomHole(holes);
   }
   lastHole = hole;
+  console.log(hole);
   return hole;
 };
