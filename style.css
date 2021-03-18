@@ -10,6 +10,10 @@ html {
     box-sizing: inherit;
     padding: 0;
     margin: 0;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 
 body {
@@ -21,12 +25,13 @@ body {
 }
 
 h1 {
-    /* text-align: center; */
-    font-size: 10rem;
+    font-size: 8rem;
     line-height: 1;
+    text-shadow: 4px 2px 1px white;
+    padding: 1rem 0;
 }
 
-.count {
+.score {
     margin-left: 5rem;
 }
 
@@ -37,22 +42,49 @@ h1 {
 }
 
 .hole {
-    flex-basis: 32.2%;
+    flex-basis: 32.22%;
     margin: 0 calc(3.33% / 6);
     background-image: url("img/hole.png");
     background-size: cover;
     width: 19vh;
+    overflow: hidden;
+    position: relative;
 }
 
-.game::after, .hole::after {
+.game::after,
+.hole::after {
     content: "";
-    float: right;  
+    float: right;
 }
 
 .game::after {
-    padding-top: 33.33%;
+    padding-top: 32%;
 }
 
 .hole::after {
     padding-top: 100%;
+}
+
+.mole {
+    background-image: url("img/mole-short.png");
+    background-size: cover;
+    width: 60%;
+    height: 60%;
+    transform: translateY(100%);
+    position: absolute;
+    top: 0;
+    left: 21%;
+    z-index: -1;
+    transition: transform ease-out .3s;
+    -webkit-transition: transform ease-out .3s;
+    -moz-transition: transform ease-out .3s;
+    -ms-transition: transform ease-out .3s;
+}
+
+.up {
+    transform: translateY(0);
+}
+
+.active {
+    z-index: 0;
 }
