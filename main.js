@@ -1,4 +1,5 @@
 /* Variables */
+
 const holes = document.querySelectorAll(".hole");
 const score = document.querySelector(".score");
 const moles = document.querySelectorAll(".mole");
@@ -36,7 +37,7 @@ const randomMole = (moles) => {
 };
 
 const showMole = () => {
-  const time = randomTime(1200, 1800);
+  const time = randomTime(1000, 1500);
   const mole = randomMole(moles);
   mole.classList.add("up");
   mole.addEventListener("transitionend", () => mole.classList.add("active"), {
@@ -55,7 +56,7 @@ function changeScore() {
   this.classList.remove("up");
   this.classList.remove("active");
   if (timeUp) showMole();
-}
+};
 
 startBtn.addEventListener("click", startGame, { once: true });
 moles.forEach((mole) => mole.addEventListener("click", changeScore));

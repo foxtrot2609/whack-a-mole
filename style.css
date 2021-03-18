@@ -1,7 +1,7 @@
 html {
     box-sizing: border-box;
     font-size: 10px;
-    background: url("img/grass.jpg") repeat;
+    font-family: "Amatic SC", cursive;
 }
 
 *,
@@ -21,7 +21,7 @@ body {
     flex-direction: column;
     justify-content: start;
     align-items: center;
-    font-family: "Amatic SC", cursive;
+    background: url("img/grass.jpg") repeat;
 }
 
 h1 {
@@ -29,6 +29,29 @@ h1 {
     line-height: 1;
     text-shadow: 4px 2px 1px white;
     padding: 1rem 0;
+}
+
+button {
+    background-color: rgba(255, 255, 255, .2);
+    outline: none;
+    font-family: "Amatic SC", cursive;
+    font-size: 3.5rem;
+    font-weight: 700;
+    text-shadow: 2px 2px 1px white;
+    cursor: pointer;
+    border: .4rem solid black;
+    border-radius: 1rem;
+    box-shadow: 0 0 3px 3px white;
+    padding: 0 3rem;
+}
+
+button:hover {
+    box-shadow: 0 0 6px 6px white;
+}
+
+button:active {
+    background: none;
+    box-shadow: 0 0 3px 3px white;
 }
 
 .score {
@@ -46,7 +69,7 @@ h1 {
     margin: 0 calc(3.33% / 6);
     background-image: url("img/hole.png");
     background-size: cover;
-    width: 19vh;
+    width: 18vh;
     overflow: hidden;
     position: relative;
 }
