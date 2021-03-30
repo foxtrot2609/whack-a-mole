@@ -3,6 +3,7 @@
 // state variables
 let lastMole;
 let timeUp = false;
+let bestResult = localStorage.getItem("result");
 let currentLevel = localStorage.getItem("level");
 let playedGames = localStorage.getItem("played");
 // constants
@@ -34,10 +35,10 @@ const randomMole = (moles) => {
 };
 
 const getBestResult = () => {
-  if (localStorage.getItem("result") === null) {
+  if (bestResult === null) {
     result.textContent = "0";
   } else {
-    result.textContent = localStorage.getItem("result");
+    result.textContent = bestResult;
   }
 };
 
