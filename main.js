@@ -16,9 +16,21 @@ const moles = document.querySelectorAll(".mole");
 
 /* Functions */
 
-const bestResult = () => {
-  
-}
+const setBestResult = () => {
+  if (localStorage.getItem("result") === null) {
+    result.textContent = "0";
+  } else {
+    result.textContent = localStorage.getItem("result");
+  }
+};
+
+const setLevel = () => {
+  if (localStorage.getItem("level") === null) {
+    level.textContent = "0";
+  } else {
+    level.textContent = localStorage.getItem("level");
+  }
+};
 
 const startGame = () => {
   count = 0;
@@ -50,7 +62,7 @@ const showMole = () => {
   const mole = randomMole(moles);
   mole.classList.add("up");
   mole.addEventListener("transitionend", () => mole.classList.add("active"), {
-    once: true
+    once: true,
   });
   timerId = setTimeout(() => {
     mole.classList.remove("up");
@@ -65,7 +77,14 @@ function changeScore() {
   this.classList.remove("up");
   this.classList.remove("active");
   if (timeUp) showMole();
+  // set best result
+  if (count > localStorage.getItem("result")) {
+    localStorage.setItem("result", count);
+    result.textContent = localStorage.getItem("result");
+  }
 }
 
 moles.forEach((mole) => mole.addEventListener("click", changeScore));
 startBtn.addEventListener("click", startGame, { once: true });
+
+setBestResult();
