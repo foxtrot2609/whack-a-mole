@@ -1,13 +1,17 @@
 /* Variables */
 
+// state variables
+let count;
+let timerId;
+let lastMole;
+let timeUp = false;
+// constants
+const gameTime = 15000;
+// elements
 const holes = document.querySelectorAll(".hole");
 const score = document.querySelector(".score");
 const moles = document.querySelectorAll(".mole");
-let lastMole;
-let timeUp = false;
-const gameTime = 10000;
-let count;
-let timerId;
+
 
 /* Functions */
 
@@ -58,5 +62,5 @@ function changeScore() {
   if (timeUp) showMole();
 };
 
-startBtn.addEventListener("click", startGame, { once: true });
 moles.forEach((mole) => mole.addEventListener("click", changeScore));
+startBtn.addEventListener("click", startGame, { once: true });
