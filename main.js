@@ -3,12 +3,13 @@
 // state variables
 let lastMole;
 let timeUp = false;
+let currentLevel = localStorage.getItem("level");
 // constants
 let count;
 let timerId;
-let startOfTimeGap = 1500;
-let endOfTimeGap = 2000;
-const gameTime = 15000;
+let startOfTimeGap = 2000;
+let endOfTimeGap = 3000;
+const gameTime = 5000;
 // elements
 const holes = document.querySelectorAll(".hole");
 const score = document.querySelector(".score");
@@ -16,7 +17,7 @@ const moles = document.querySelectorAll(".mole");
 
 /* Functions */
 
-const setBestResult = () => {
+const getBestResult = () => {
   if (localStorage.getItem("result") === null) {
     result.textContent = "0";
   } else {
@@ -24,12 +25,22 @@ const setBestResult = () => {
   }
 };
 
-const setLevel = () => {
-  if (localStorage.getItem("level") === null) {
+const getLevel = () => {
+  if (currentLevel === null) {
     level.textContent = "0";
   } else {
-    level.textContent = localStorage.getItem("level");
+    level.textContent = currentLevel;
+    startOfTimeGap -= +currentLevel * 100;
+    endOfTimeGap -= +currentLevel * 100;
   }
+};
+
+const setLevel = () => {
+  +currentLevel++;
+  localStorage.setItem("level", currentLevel);
+  level.textContent = currentLevel;
+  startOfTimeGap -= 100;
+  endOfTimeGap -= 100;
 };
 
 const startGame = () => {
@@ -57,6 +68,22 @@ const randomMole = (moles) => {
   return mole;
 };
 
+function checkLevel() {
+  if (timeUp) {
+    showMole();
+  } else {
+    this.addEventListener(
+      "transitionend",
+      () => {
+        if (count >= gameTime / 1000) setLevel();
+      },
+      {
+        once: true,
+      }
+    );
+  }
+};
+
 const showMole = () => {
   const time = randomTime(startOfTimeGap, endOfTimeGap);
   const mole = randomMole(moles);
@@ -67,7 +94,7 @@ const showMole = () => {
   timerId = setTimeout(() => {
     mole.classList.remove("up");
     mole.classList.remove("active");
-    if (timeUp) showMole();
+    checkLevel();
   }, time);
 };
 
@@ -76,15 +103,17 @@ function changeScore() {
   clearTimeout(timerId);
   this.classList.remove("up");
   this.classList.remove("active");
-  if (timeUp) showMole();
+  checkLevel();
+
   // set best result
   if (count > localStorage.getItem("result")) {
     localStorage.setItem("result", count);
     result.textContent = localStorage.getItem("result");
   }
-}
+};
 
 moles.forEach((mole) => mole.addEventListener("click", changeScore));
 startBtn.addEventListener("click", startGame, { once: true });
 
-setBestResult();
+getBestResult();
+getLevel();
