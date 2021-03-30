@@ -1,11 +1,13 @@
 /* Variables */
 
 // state variables
-let count;
-let timerId;
 let lastMole;
 let timeUp = false;
 // constants
+let count;
+let timerId;
+let startOfTimeGap = 1500;
+let endOfTimeGap = 2000;
 const gameTime = 15000;
 // elements
 const holes = document.querySelectorAll(".hole");
@@ -41,7 +43,7 @@ const randomMole = (moles) => {
 };
 
 const showMole = () => {
-  const time = randomTime(1000, 1500);
+  const time = randomTime(startOfTimeGap, endOfTimeGap);
   const mole = randomMole(moles);
   mole.classList.add("up");
   mole.addEventListener("transitionend", () => mole.classList.add("active"), {
