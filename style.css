@@ -39,8 +39,7 @@ h1 {
     width: 100vw;
 }
 
-.controls__level,
-.controls__result {
+.scoreboard  {
     font-family: "Amatic SC", cursive;
     font-size: 5rem;
     font-weight: 700;
