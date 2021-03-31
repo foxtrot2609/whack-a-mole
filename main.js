@@ -43,9 +43,9 @@ const getBestResult = () => {
 };
 
 const setBestResult = () => {
-  if (count > localStorage.getItem("result")) {
+  if (count > bestResult) {
     localStorage.setItem("result", count);
-    result.textContent = localStorage.getItem("result");
+    result.textContent = bestResult;
   }
 };
 
@@ -134,7 +134,7 @@ function setCounters() {
   }
 }
 
-moles.forEach((mole) => mole.addEventListener("click", clickMole));
+moles.forEach(mole => mole.addEventListener("click", clickMole));
 startBtn.addEventListener("click", startGame, { once: true });
 
 getBestResult();
